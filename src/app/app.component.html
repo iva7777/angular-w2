@@ -1,0 +1,40 @@
+<div class="done-form" *ngIf="isDone">
+  <h1>You are done with rating!</h1>
+</div>
+
+<div class="finish-form" *ngIf="!isDone && index == bookCollection.length">
+  <h1>You have rated all books successfully!</h1>
+  <button (click)="reset()" class="additional-btn">I want to rate them again</button>
+  <button (click)="finishRating()" class="additional-btn">I am done with rating</button>
+</div>
+
+<div class="wrapper" *ngIf="!isDone && index < bookCollection.length">
+  <div class="container-fluid">
+    <h3>Book's Name</h3>
+    <input type="text" class="name" [(ngModel)]="name" [disabled]="isDisabled">
+  </div>
+  <div class="container-fluid">
+    <h3>Description</h3>
+    <input type="text" class="description" [(ngModel)]="description" [disabled]="isDisabled">
+  </div>
+  <div class="container-fluid">
+    <h3>Authors</h3>
+    <input type="text" class="authors" [(ngModel)]="author" [disabled]="isDisabled">
+  </div>
+  <div class="container-fluid">
+    <h3>Your Rating ✨</h3>
+    <h3 id="averageRating">{{userRating}}</h3>
+  </div>
+  <div class="container-fluid">
+    <h3>Average Rating ⭐</h3>
+    <h3 id="averageRating">{{averageRating.toFixed(1)}}</h3>
+  </div>
+  <div class="container-fluid">
+    <button (click)="getUserRating(1)" class="rating-btn">1</button>
+    <button (click)="getUserRating(2)" class="rating-btn">2</button>
+    <button (click)="getUserRating(3)" class="rating-btn">3</button>
+    <button (click)="getUserRating(4)" class="rating-btn">4</button>
+    <button (click)="getUserRating(5)" class="rating-btn">5</button>
+  </div>
+  <button (click)="calculateAverageRating(userRating)" [disabled]="isDisabled" class="submit-btn">Submit Review</button>
+</div>
